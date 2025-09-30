@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="photobooth website">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1> photobooth!! </h1>
+    <video id="video" autoplay></video>
+    <br>
+    
+    <div class="machine-buttons">
+        <img src="machines/y2k.png" onclick="chooseBooth('y2k')">
+        <img src="machines/retro.png" onclick="chooseBooth('retro')">
+        <img src="machines/modern.png" onclick="chooseBooth('modern')">
+    </div>
+
+    <label for="template">Choose Template:</label>
+    <select id="template"></select><br>
+    <img src="buttons/y2k.png" onclick="snap()">
+    <img src="buttons/download.png" onclick="download">
+    <canvas id="canvas"></canvas>
+</body>
+
+
+
+</html>
