@@ -3,7 +3,13 @@
             text-align: center;
             background: #eee;
         }
-        video, canvas {
+        video{
+            transform: scaleX(-1);
+            border: 2px solid #333;
+            border-radius:10px;
+            max-width:100%
+        }
+        canvas {
             border: 2px solid #333;
             border-radius:10px;
             max-width:100%
