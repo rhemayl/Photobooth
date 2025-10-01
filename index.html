@@ -9,23 +9,35 @@
 </head>
 
 <body>
-    <h1 style="float:center;"> photobooth!! </h1>
-    <img src="favicon.png" style="float:center;"/>
-    <br>
 
-    <video id="video" autoplay></video>
-    <br>
-    
-    <div class="machine-buttons">
-        <img src="machines/y2k.png" onclick="chooseBooth('y2k')">
-        <img src="machines/retro.png" onclick="chooseBooth('retro')">
-        <img src="machines/modern.png" onclick="chooseBooth('modern')">
+    <div class="container">
+        <div class="left">
+            <video id="video" autoplay></video> 
+            <br>
+            <div class="machine-buttons">
+                <img src="machines/y2k.png" onclick="chooseBooth('y2k')">
+                <img src="machines/retro.png" onclick="chooseBooth('retro')">
+                <img src="machines/modern.png" onclick="chooseBooth('modern')">
+            </div>
+        </div>
+        <div class="right">
+            <div class="left-aligned">
+                <div class="header">
+                    <h1> photobooth!! </h1>
+                    <img src="icon.png" style="width:50px;">  
+                </div>
+                <br>
+                <div class="buttons">
+                    <img src="buttons/snap.png" id="snap">
+                    <img src="buttons/download.png" id="download">  
+                </div>
+            </div>
+            <div id="countdown"></div>
+            <br>
+            <canvas id="canvas"></canvas>
+        </div>
     </div>
 
-    <img src="buttons/snap.png" id="snap">
-    <img src="buttons/download.png" id="download">
-    <div id="countdown"></div>
-    <canvas id="canvas"></canvas>
 
 
     <script src="script.js"></script>

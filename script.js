@@ -4,6 +4,7 @@ const canvas = document.getElementById("canvas");
 const countdown = document.getElementById("countdown")
 const ctx = canvas.getContext("2d");
 let photo = 1;
+let isShooting = false;
 
 
 navigator.mediaDevices.getUserMedia({video:true})
@@ -21,6 +22,8 @@ function chooseBooth(templateName) {
 }
 
 snap.addEventListener("click", () => {
+    if (isShooting) return;
+    isShooting = true
     photo = 1;
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight * 4;
@@ -35,9 +38,11 @@ snap.addEventListener("click", () => {
     })
 
 function takePhoto(){
-    if (photo>4) return;
+    if (photo>4) {
+        isShooting = false;
+        return;
+    }
     let count = 3;
-    countdown.textContent = count
     const countdowntimer = setInterval(() => {
         countdown.textContent = count;
         count--;

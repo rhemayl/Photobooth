@@ -5,14 +5,10 @@
         }
         video{
             transform: scaleX(-1);
-            border: 2px solid #333;
-            border-radius:10px;
             max-width:100%
         }
         canvas {
-            border: 2px solid #333;
-            border-radius:10px;
-            max-width:100%
+            max-width:50%
         }
         .machine-buttons img {
             width: 120px;
@@ -28,4 +24,28 @@
         select, button {
             margin: 10px;
             padding: 10px 15px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .left-aligned {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 10px;       
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;       
         }
