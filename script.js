@@ -1,10 +1,13 @@
 const video = document.getElementById("video");
 const snap = document.getElementById("snap")
 const canvas = document.getElementById("canvas");
-const countdown = document.getElementById("countdown")
+const download = document.getElementById("download");
+const countdown = document.getElementById("countdown");
+const errormessage = document.getElementById("errormessage");
 const ctx = canvas.getContext("2d");
 let photo = 1;
 let isShooting = false;
+let template = null;
 
 
 navigator.mediaDevices.getUserMedia({video:true})
@@ -12,12 +15,12 @@ navigator.mediaDevices.getUserMedia({video:true})
         video.srcObject = stream;
     })
     .catch(err => {
-        console.log("Error:" + err);
+        errormessage.textContent = "Error:" + err;
     })
 
 
 function chooseBooth(templateName) {
-    currentBooth = templateName;
+    template = templateName
     video.style.filter = boothFilters(templateName);
 }
 
@@ -28,18 +31,18 @@ snap.addEventListener("click", () => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight * 4;
     takePhoto()
-    if(templateName) {
-        const templateImage = new Image();
-        templateImage.src = "template/" + templateName;
-        templateImage.onload = () =>{
-            ctx.drawImage(templateImage, 0, 0, canvas.width, canvas.height);
-        }
-    }
     })
 
 function takePhoto(){
     if (photo>4) {
         isShooting = false;
+        if(template) {
+            const templateImage = new Image();
+            templateImage.src = "template/" + template + ".png";
+            templateImage.onload = () =>{
+                ctx.drawImage(templateImage, 0, 0, canvas.width, canvas.height);
+            }
+        }
         return;
     }
     let count = 3;
@@ -58,3 +61,11 @@ function takePhoto(){
         }
     },1000)
 }
+
+download.addEventListener("click", () => {
+    const photoLink = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = photoLink;
+    link.download = "photo.png";
+    link.click();
+})
