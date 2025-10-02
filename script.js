@@ -8,6 +8,7 @@ const ctx = canvas.getContext("2d");
 let photo = 1;
 let isShooting = false;
 let template = null;
+let readydownload = false;
 
 
 navigator.mediaDevices.getUserMedia({video:true})
@@ -26,6 +27,7 @@ function chooseBooth(templateName) {
 
 snap.addEventListener("click", () => {
     if (isShooting) return;
+    readydownload = false
     isShooting = true
     photo = 1;
     canvas.width = video.videoWidth;
@@ -38,14 +40,17 @@ function takePhoto(){
         isShooting = false;
         if(template) {
             const templateImage = new Image();
-            templateImage.src = "template/" + template + ".png";
+            templateImage.src = "template/" + template + ".jpg";
             templateImage.onload = () =>{
                 ctx.drawImage(templateImage, 0, 0, canvas.width, canvas.height);
+                readydownload = true;
             }
+        } else {
+            readydownload=true
         }
         return;
     }
-    let count = 3;
+    let count = 0;
     const countdowntimer = setInterval(() => {
         countdown.textContent = count;
         count--;
@@ -63,9 +68,11 @@ function takePhoto(){
 }
 
 download.addEventListener("click", () => {
-    const photoLink = canvas.toDataURL("image/png");
-    const link = document.createElement("a");
-    link.href = photoLink;
-    link.download = "photo.png";
-    link.click();
+    if (readydownload) {
+        const photoLink = canvas.toDataURL("image/png"); 
+        const link = document.createElement("a");       
+        link.href = photoLink;                            
+        link.download = "photo.png";                                 
+        link.click();                                                 
+    }
 })

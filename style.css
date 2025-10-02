@@ -47,7 +47,11 @@
         .buttons {
             display: flex;
             align-items: center;
-            gap: 20px;       
+            gap: 20px;   
+            cursor: pointer;    
         }
 
-       
+       #download{
+        width: 40px;
+        background-image: url('buttons/download.png')
+       }
