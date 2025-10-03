@@ -25,6 +25,21 @@ function chooseBooth(templateName) {
     video.style.filter = boothFilters(templateName);
 }
 
+function boothFilters(templateName) {
+    switch (templateName) {
+        case "y2k":
+            return "brightness(1.4) saturate(160%)";
+        case "retro":
+            return "sepia(90%) contrast(160%) grayscale(40%)";
+        case "modern":
+            return "brightness(1.3) contrast(90%)";
+        default:
+            return "none";
+    }
+}
+
+
+
 snap.addEventListener("click", () => {
     if (isShooting) return;
     readydownload = false
@@ -45,18 +60,20 @@ function takePhoto(){
                 ctx.drawImage(templateImage, 0, 0, canvas.width, canvas.height);
                 readydownload = true;
             }
+            ctx.filter = "none";
         } else {
             readydownload=true
         }
         return;
     }
-    let count = 0;
+    let count = 3;
     const countdowntimer = setInterval(() => {
         countdown.textContent = count;
         count--;
         if (count<0) {
             ctx.save();
             ctx.scale(-1,1);
+            ctx.filter = boothFilters(template);
             ctx.drawImage(video, -canvas.width, (photo-1) * video.videoHeight, canvas.width, video.videoHeight)
             ctx.restore()
             clearInterval(countdowntimer);
