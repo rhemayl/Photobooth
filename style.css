@@ -19,11 +19,11 @@
             transition: border 0.3s;
         }
         .machine-buttons img:hover {
-            border: 3px solid #007bff;
+            border: 3px solid #F88379;
         }
-        select, button {
-            margin: 10px;
-            padding: 10px 15px;
+       
+        .machine-buttons img.clicked {
+            border: 3px solid #F88379;
         }
 
         .container {

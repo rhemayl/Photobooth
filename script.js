@@ -5,6 +5,7 @@ const download = document.getElementById("download");
 const countdown = document.getElementById("countdown");
 const errormessage = document.getElementById("errormessage");
 const ctx = canvas.getContext("2d");
+const machineButton = document.querySelectorAll(".machine-buttons img");
 let photo = 1;
 let isShooting = false;
 let template = null;
@@ -19,6 +20,12 @@ navigator.mediaDevices.getUserMedia({video:true})
         errormessage.textContent = "Error:" + err;
     })
 
+machineButton.forEach (button => {
+    button.addEventListener("click", () => {
+        machineButton.forEach (machine =>machine.classList.remove("clicked"))
+        button.classList.add("clicked")
+    })
+})
 
 function chooseBooth(templateName) {
     template = templateName
@@ -55,7 +62,7 @@ function takePhoto(){
         isShooting = false;
         if(template) {
             const templateImage = new Image();
-            templateImage.src = "template/" + template + ".jpg";
+            templateImage.src = "template/" + template + ".png";
             templateImage.onload = () =>{
                 ctx.drawImage(templateImage, 0, 0, canvas.width, canvas.height);
                 readydownload = true;
