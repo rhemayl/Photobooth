@@ -29,11 +29,11 @@ machineButton.forEach (button => {
 
 function chooseBooth(templateName) {
     template = templateName
-    video.style.filter = boothFilters(templateName);
+    video.style.filter = boothFilters(template);
 }
 
-function boothFilters(templateName) {
-    switch (templateName) {
+function boothFilters(template) {
+    switch (template) {
         case "y2k":
             return "brightness(1.4) saturate(160%)";
         case "retro":
